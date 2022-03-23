@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/style2.css" />
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+<div id="example" class="p-4">
+  
+  <button type="button" @click="openModal" class="btn1">ボタン</button>
+  <open-modal v-show="showContent" @close="showContent = false"></open-modal>
+</div>
+
+<script>
+  Vue.component('open-modal', {
+      template: `
+        <div id="overlay">
+          <div id="content">
+            <div class="btnichi">
+              <button type="button" v-on:click="$emit('close')" class="btn2">閉じる <i class="fas fa-times"></i></button></div>
+              <div><p class="moji">モーダルウィンドウ</p></div>
+            </div>
+        </div>`,
+    });
+
+  new Vue({
+    el: '#example',
+    data() {
+      return {
+        showContent: false,
+      }
+    },
+    methods: {
+      openModal: function () {
+        this.showContent = true;
+      },
+      closeModal: function () {
+        this.showContent = false;
+      }
+    }
+  })
+</script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
